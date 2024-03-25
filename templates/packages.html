@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Packages - Freshers Party{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h2 class="mt-4 mb-4">Packages</h2>
+        
+        {% if packages %}
+            {% for package in packages %}
+                <div class="card mt-4">
+                    <div class="card-header">
+                        {{ package.name }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Price: ₹{{ package.price }}</h5>
+                        <p class="card-text">Venue: {{ package.venue }}</p>
+                        <p class="card-text">Theme: {{ package.theme }}</p>
+                        <p class="card-text">Included Games: {{ package.games }}</p>
+                        <p class="card-text">Included Cards: {{ package.cards }}</p>
+                        <p class="card-text">Included Gifts: {{ package.gifts }}</p>
+                        <p class="card-text">Food: {{ package.food }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No packages available at the moment.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

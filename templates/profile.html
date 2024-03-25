@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-4 mb-4">Profile</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" value="{{ user.username }}" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ user.first_name }}">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" value="{{ user.last_name }}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" value="{{ user.email }}" disabled>
+                </div>
+                {% if profile %}
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <input type="text" class="form-control" id="department" name="department" value="{{ profile.department }}">
+                </div>
+                <div class="form-group">
+                    <label for="class_name">Class</label>
+                    <select class="form-control" id="class_name" name="class_name">
+                        {% for choice in profile.class_choice %}
+                            <option value="{{ choice.0 }}" {% if choice.0 == profile.class_name %}selected{% endif %}>{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="prn_number">PRN Number</label>
+                    <input type="text" class="form-control" id="prn_number" name="prn_number" value="{{ profile.prn_number }}">
+                </div>
+                {% endif %}
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h4>Booking History</h4>
+            <ul>
+                {% for booking in booking_history %}
+                <li>{{ booking.package.name }} - {{ booking.datetime }}</li>
+                {% empty %}
+                <li>No bookings yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

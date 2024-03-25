@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Register - Freshers Party{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card mt-4">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">Register for Freshers Party</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    <!-- Username -->
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
+                    </div>
+                    <!-- First Name -->
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" name="first_name" class="form-control" id="firstName" placeholder="Enter First Name">
+                    </div>
+                    <!-- Last Name -->
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" name="last_name" class="form-control" id="lastName" placeholder="Enter Last Name">
+                    </div>
+                    <!-- Department -->
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <select name="department" class="form-control" id="department">
+                            <option value="">Select Department</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Microbiology">Microbiology</option>
+                            <option value="Biochemistry">Biochemistry</option>
+                            <option value="Geography">Geography</option>
+                            <option value="Humanities">Humanities</option>
+                            <option value="Mathematics and Statistics">Mathematics and Statistics</option>
+                        </select>
+                    </div>
+                    <!-- Class -->
+                    <div class="form-group">
+                        <label for="class">Class</label>
+                        <select name="class" class="form-control" id="class">
+                            <option value="">Select Class</option>
+                            <option value="UG-SY">UG - SY</option>
+                            <option value="UG-TY">UG - TY</option>
+                            <option value="UG-FY">UG - FY</option>
+                            <option value="PG-SY">PG - SY</option>
+                        </select>
+                    </div>
+                    <!-- PRN Number -->
+                    <div class="form-group">
+                        <label for="prn">PRN Number</label>
+                        <input type="text" name="PRN" class="form-control" id="prn" placeholder="Enter PRN Number">
+                    </div>
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password">
+                    </div>
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    <!-- Login Link -->
+                    <p class="text-center mt-3">Already registered? <a href="{% url 'login' %}">Login</a> to your account.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

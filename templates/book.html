@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Book Now - Freshers Party{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h2 class="mt-4 mb-4">Book Now</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ user.profile.name }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="class" class="form-label">Class:</label>
+                    <select class="form-control" id="class" name="class" required>
+                        <option value="" selected disabled>Select Class</option>
+                        <option value="UG-SY">UG - SY</option>
+                        <option value="UG-TY">UG - TY</option>
+                        <option value="UG-FY">UG - FY</option>
+                        <option value="PG-SY">PG - SY</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="department" class="form-label">Department:</label>
+                    <select class="form-control" id="department" name="department" required>
+                        <option value="" selected disabled>Select Department</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Microbiology">Microbiology</option>
+                        <option value="Biochemistry">Biochemistry</option>
+                        <option value="Geography">Geography</option>
+                        <option value="Humanities">Humanities</option>
+                        <option value="Mathematics and Statistics">Mathematics and Statistics</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="mobile_number" class="form-label">Mobile Number:</label>
+                    <input type="tel" class="form-control" id="mobile_number" name="mobile_number" required>
+                </div>
+                <div class="mb-3">
+                    <label for="datetime" class="form-label">Date and Time:</label>
+                    <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
+                </div>
+            <div class="form-group">
+                <label for="package">Select Package:</label>
+                <select class="form-control" id="package" name="package">
+                    <option value="" selected disabled>Select Package</option>
+                    {% for package in packages %}
+                        <option value="{{ package.id }}">{{ package.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="options-container" style="display: none;">
+                <!-- Dynamic options will be loaded here -->
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Book Now</button>
+        </form>
+    </div>
+</div>
+<script src="{% static 'js/book.js' %}"></script>
+
+{% endblock content%}
+

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - Freshers Party{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Home Content Goes Here -->
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to Freshers Party!</h1>
+    <p class="lead">Get ready for an amazing event exclusively for freshers.</p>
+    {% if user.is_authenticated %}
+    <p class="lead">You are already logged in. Lets Book the event.</p>
+    <a href="{% url 'book' %}"><button class="btn btn-lg">Let's Go </button></a>
+    {% endif %}
+    {% if not user.is_authenticated %}
+    <a href="{% url 'register' %}"><button class="btn btn-lg">Let's Go - register</button></a>
+    <p>Already registered? <a href="{% url 'login' %}">Login</a> to your account.</p>
+    {% endif %}
+    <hr class="my-4">
+    
+
+
+</div>
+{% endblock %}
